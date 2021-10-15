@@ -11,6 +11,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
     EditText editSo1,editSo2,editKetqua;
     Button btnAdd,btnSub,btnMul,btnDiv;
+    private MyService myService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,27 +27,41 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int A = Integer.parseInt(editSo1.getText().toString());
+                int B =  Integer.parseInt(editSo2.getText().toString());
+                int Result = myService.Add(A,B);
+                editKetqua.setText(String.valueOf(Result));
                 getNumber();
-                int num1 =Integer.parseInt(editSo1.getText()+"");
-                int num2 =Integer.parseInt(editSo2.getText()+"");
             }
         });
         btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getNumber();
+                int A = Integer.parseInt(editSo1.getText().toString());
+                int B =  Integer.parseInt(editSo2.getText().toString());
+                int Result = myService.Sub(A,B);
+                editKetqua.setText(String.valueOf(Result));
             }
         });
         btnMul.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getNumber();
+                int A = Integer.parseInt(editSo1.getText().toString());
+                int B =  Integer.parseInt(editSo2.getText().toString());
+                int Result = myService.Mul(A,B);
+                editKetqua.setText(String.valueOf(Result));
             }
         });
         btnDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getNumber();
+                int A = Integer.parseInt(editSo1.getText().toString());
+                int B =  Integer.parseInt(editSo2.getText().toString());
+                double Result = myService.Div(A,B);
+                editKetqua.setText(String.valueOf(Result));
             }
         });
     }

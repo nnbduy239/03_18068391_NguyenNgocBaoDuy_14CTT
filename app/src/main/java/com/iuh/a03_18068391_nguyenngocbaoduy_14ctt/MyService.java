@@ -6,6 +6,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 import android.widget.RemoteViews;
 
@@ -13,12 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 public class MyService extends Service {
-    public static final  int ACTION_SUB=1;
-    private static final  int ACTION_MUL =2;
-    private static final  int ACTION_DIV =3;
-    public static final  int ACTION_ADD =4;
-
-    Number number;
+    private  MyBinder binder = new MyBinder();
 
     @Override
     public void onCreate() {
@@ -28,13 +24,15 @@ public class MyService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return binder;
     }
-
-    @Override
+    public class MyBinder extends Binder {
+        MyService getService() {
+            return MyService.this;
+        }
+    }
+        @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String number1 = intent.getStringExtra("number1");
-        String number2 = intent.getStringExtra("number2");
         sendNotification();
         return START_NOT_STICKY;
     }
@@ -57,5 +55,25 @@ public class MyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+    public  int Add(int a, int b){
+        int result;
+        result = a+b;
+        return result;
+    }
+    public  int Mul(int a, int b){
+        int result;
+        result = a-b;
+        return result;
+    }
+    public  double Div(int a, int b){
+        double result;
+        result = a/b;
+        return result;
+    }
+    public  int Sub(int a, int b){
+        int result;
+        result = a*b;
+        return result;
     }
 }

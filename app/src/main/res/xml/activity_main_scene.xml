@@ -8,7 +8,15 @@
         motion:constraintSetStart="@id/start"
         motion:duration="1000">
        <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/constraintLayout2"
+               motion:framePosition="90"
+               android:alpha="0" />
        </KeyFrameSet>
+        <OnSwipe
+            motion:touchAnchorId="@+id/constraintLayout"
+            motion:dragDirection="dragDown"
+            motion:touchAnchorSide="bottom" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
